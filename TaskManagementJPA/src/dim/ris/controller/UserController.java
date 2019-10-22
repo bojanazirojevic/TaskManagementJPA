@@ -36,6 +36,18 @@ public class UserController {
 			User u = (User)em.createQuery(query).getSingleResult();
 			return u;
 		}
+		
+		public static User getUser(int id) {
+			EntityManager em = JPAUtil.getEntityManager();
+			try {
+				return em.find(User.class, id);
+			}catch (Exception e) {
+				return null;
+			}finally {
+				if(em != null)
+					em.close();
+			} 
+		}
 
 
 	public static void main(String[] args) {
